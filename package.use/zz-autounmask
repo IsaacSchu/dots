@@ -1,0 +1,29 @@
+# package.use# required by media-gfx/graphviz-11.0.0::gentoo
+# required by media-video/pipewire-1.0.7-r1::gentoo[doc]
+# required by media-video/wireplumber-0.5.3::gentoo
+>=media-libs/gd-2.3.3-r4 fontconfig truetype
+# required by media-libs/fontconfig-2.15.0::gentoo[doc]
+# required by www-client/firefox-115.13.0::gentoo
+# required by www-client/firefox (argument)
+>=app-text/docbook-sgml-utils-0.6.14-r6 jadetex
+# required by app-text/texlive-core-2023-r9::gentoo
+# required by dev-texlive/texlive-fontsrecommended-2023_p54074-r1::gentoo
+# required by virtual/latex-base-1.0::gentoo
+# required by dev-tex/latex-beamer-3.71::gentoo
+# required by dev-texlive/texlive-latexrecommended-2023_p69131::gentoo
+# required by dev-tex/glossaries-4.53::gentoo
+# required by dev-texlive/texlive-latexextra-2023_p69752-r4::gentoo
+# required by dev-tex/biblatex-3.19::gentoo
+# required by dev-tex/biber-2.19::gentoo
+>=media-libs/harfbuzz-8.5.0 icu
+# required by x11-libs/libxcb-1.17.0::gentoo[doc]
+# required by media-sound/pulseaudio-daemon-17.0-r1::gentoo[X]
+# required by media-libs/libpulse-17.0::gentoo
+# required by media-plugins/alsa-plugins-1.2.7.1-r1::gentoo[pulseaudio]
+>=app-text/doxygen-1.9.8 dot
+# required by www-client/firefox-115.13.0::gentoo[system-libvpx]
+# required by www-client/firefox (argument)
+>=media-libs/libvpx-1.13.1-r1 postproc
+# required by www-client/firefox-115.13.0::gentoo[X,pgo]
+# required by www-client/firefox (argument)
+>=x11-base/xorg-server-21.1.13-r1 xvfb
