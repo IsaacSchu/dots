@@ -1,5 +1,0 @@
-media-video/ffmpeg xvid opus vpx theora x264 vorbis mp3
-
-media-libs/freetype brotli
-
-app-arch/brotli abi_x86_32

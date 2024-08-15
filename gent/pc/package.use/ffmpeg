@@ -1,0 +1,5 @@
+media-video/ffmpeg xvid opus vpx theora x264 vorbis mp3 lzma lv2 libv4l nvenc opengl threads cuda kvazaar v4l vaapi webp x265 vdpau
+
+media-libs/freetype brotli
+
+app-arch/brotli abi_x86_32
