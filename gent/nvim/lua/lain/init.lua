@@ -1,7 +1,0 @@
-require("lain.remap")
-require("lain.set")
-require("lain.after.plugin.telescope")
-require("lain.after.plugin.colors")
-require("lain.after.plugin.treesitter")
-require("lain.after.plugin.dashboard")
-require("lain.after.plugin.mason")
