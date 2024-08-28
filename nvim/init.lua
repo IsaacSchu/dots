@@ -2,7 +2,11 @@ vim.g.mapleader = " "
 require("config.lazy")
 --require("lazy").setup({{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"}})
 require("mason").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = { "pyright" }
+})
 local lspconfig = require("lspconfig")
+local cmp = require('cmp')
 require('lint').linters_by_ft = {
     markdown = { 'vale', 'selene', 'cpplint', 'ruff' }
 }
@@ -23,6 +27,28 @@ require("conform").setup({
         lsp_format = "fallback",
     },
 })
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        end,
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item.
+    }),
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+        { name = 'path' },
+        { name = 'cmdline' },
+    })
+})
+
+
 --
 vim.keymap.set("n", "<leader>f", vim.cmd.Ex)
 vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true, silent = true })
@@ -57,17 +83,22 @@ vim.cmd [[
   highlight StatusLineNC guibg=NONE ctermbg=NONE
 ]]
 
+-- Define a command to run Python files
+vim.api.nvim_set_keymap('n', '<leader>r', [[:w<CR>: !python %<CR>]], { noremap = true, silent = true })
+
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>d', builtin.find_files, {})
 vim.keymap.set('n', '<leader>g', builtin.git_files, {})
-
---local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 lspconfig.clangd.setup({
     capabilities = capabilities,
     cmd = { "clangd" }
 })
-lspconfig.pyright.setup({})
+lspconfig.pyright.setup({
+    capabilities = capabilities,
+})
 lspconfig.lua_ls.setup {
     settings = {
         Lua = {
