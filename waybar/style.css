@@ -74,23 +74,23 @@ button:hover {
 }
 
 #pulseaudio {
-    color: @maroon;
+    color: #bd93f9;
 }
 
 #network {
-    color: @yellow;
+    color: #bd93f9;
 }
 
 #temperature {
-    color: @sky;
+    color: #bd93f9;
 }
 
 #battery {
-    color: @green;
+    color: #bd93f9;
 }
 
 #clock {
-    color: @flamingo;
+    color: #bd93f9;
 }
 
 #window {
