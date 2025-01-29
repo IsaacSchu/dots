@@ -9,11 +9,10 @@ bindkey -v '^?' backward-delete-char
 # Export
 export EDITOR=nvim
 export VISUAL=nvim
-export PAGER=
 export PATH="$HOME/.local/bin:$PATH"
 
 # Herstory
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 HIST_IGNORE_DUPS=true
@@ -55,21 +54,38 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
     export DBUS_SESSION_BUS_ADDRESS
 fi
 
-alias ls='ls -hN --color=auto --group-directories-first'
+alias ls='ls -hNA --color=auto --group-directories-first'
 alias grep='grep --color=auto'
 alias n='sudo -E nvim'
 alias s='sudo'
 alias vi='nvim'
 
+# Truncates filepath to first char for directories 3 levels higher
+function custom_prompt_dir() {
+    local dir="${PWD/#$HOME/~}"               # Replace $HOME with ~
+    local -a dirs=("${(s:/:)dir}")            # Split into array using '/'
+    local length=${#dirs[@]}
+
+    # Truncate each component except the last two to their first letter
+    if [ ${length} -gt 4 ]; then
+        for ((i=1; i <= length - 3; i++)); do
+            if [[ ${dirs[i]} == .* ]]; then
+                dirs[$i]=${dirs[$i]:0:2}
+            else
+            dirs[$i]=${dirs[$i]:0:1}
+            fi
+        done
+    fi 
+    echo "${(j:/:)dirs}"                      # Join components with '/'
+}
 
 # Prompt
-PS1='%F{magenta}[%F{cyan}%n%F{blue}@%F{magenta}%m %F{cyan}%~$(git_branch_name)%F{magenta}]%f%F{blue}$ %f'
+PS1='%F{magenta}[%F{cyan}%n%F{blue}@%F{magenta}%m %F{cyan}$(custom_prompt_dir)$(git_branch_name)%F{magenta}]%f%F{blue}$ %f'
 
 # Conda Stuff
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-
 
 #__conda_setup="$('~/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 #if [ $? -eq 0 ]; then
@@ -83,9 +99,7 @@ PS1='%F{magenta}[%F{cyan}%n%F{blue}@%F{magenta}%m %F{cyan}%~$(git_branch_name)%F
 #fi
 #unset __conda_setup
 
-
 # <<< conda initialize <<<
-
 
 # Zsh Autosuggestions
 if [ -f /usr/share/zsh/site-functions/zsh-autosuggestions.zsh ]; then
@@ -102,4 +116,3 @@ if [ -f /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh ]; then
     ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=#bf285d
     ZSH_HIGHLIGHT_STYLES[path]=fg=None
 fi
-
