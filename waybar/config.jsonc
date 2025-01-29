@@ -5,69 +5,79 @@
     "height" : 30,
     "modules-left": [
         "hyprland/workspaces",
-        "tray"
+        "tray",
     ],
     "modules-center": [
-        "hyprland/window"
+        "hyprland/window",
     ],
     "modules-right": [
         "pulseaudio",
+        "mpris",
         "network",
+        "cpu",
         "temperature",
-        "battery",
         "clock"
     ],
     "hyprland/workspaces": {
         "format": "{icon}",
         "on-click": "activate",
+        "show-special": true,
         "format-icons": {
 //            "active": "{number}",
+            //
         },
         "sort-by-number": true
     },
+    "hyprland/window":{
+        "max-length": 100,
+        "icon": false,
+        "icon-size": 12,
+        "on-click": "bash /home/lain/wallpapers/wallpaper.sh"
+
+    },
+    "hyprland/window#icon":{
+        "format": {},
+        "rewrite": {".+": ""},
+        "icon": true,
+        "icon-size": 20
+    },
+
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "timezone": "America/New_York",
+        "format-alt": "{:%m-%d-%Y %H:%M:%S}"
     },
     "cpu": {
-        "format": "  {usage}%",
-        "tooltip": false
+        "format": "{usage}%",
+        "tooltip": false,
+        "on-click": "alacritty -e htop"
     },
     "memory": {
-        "format": "{}%  "
+        "format": "{}%  ",
+        "on-click": "alacritty -e htop"
     },
     "temperature": {
         "critical-threshold": 80,
-        "format": "{icon} {temperatureC}°C",
-        "format-icons": ["", "", ""]
+        "format": "{temperatureF}°F",
+        "format-icons": ["", "", ""],
+        "on-click": "alacritty -e htop"
     },
     "tray": {
         "icon-size": 18,
-        "spacing": 8
-    },
-    "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}  {capacity}%",
-        "format-full": "{icon}  {capacity}%",
-        "format-charging": "  {capacity}%",
-        "format-plugged": "  {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", ""]
+        "spacing": 8,
+        "show-passive-items": true,
     },
     "network": {
         "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "{ipaddr}/{cidr} ",
+        "format-ethernet":"",
+        "format-alt": "{bandwidthUpBytes} 🡱  {bandwidthDownBytes} 🡳",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": " ⚠ ",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "pulseaudio": {
         "format": "{icon}  {volume}%",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",
         "format-icons": {
@@ -81,4 +91,15 @@
         },
         "on-click": "pavucontrol"
     },
-}
+    "mpris":{
+        "format": " {status_icon} [ {title} - {artist} {album}]",
+        "title-len": 60,
+        "artist-len": 20,
+        "album-len": 25,
+        "status-icons":{
+            "playing": "►",
+            "paused": "⏸️",
+            "stopped":"⏹️",
+        }
+    }
+} 

@@ -1,0 +1,2 @@
+# move dev-python/jinja dev-python/jinja2
+dev-python/jinja2 -doc
