@@ -32,7 +32,7 @@
         "max-length": 100,
         "icon": false,
         "icon-size": 12,
-        "on-click": "bash /home/lain/wallpapers/wallpaper.sh"
+        "on-click": "bash /home/lain/bin/wallpapers/wallpaper.sh"
 
     },
     "hyprland/window#icon":{
