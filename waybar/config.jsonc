@@ -2,7 +2,7 @@
     "margin-top" : 0,
     "margin-left": -2,
     "margin-right": -2,
-    "height" : 30,
+    "height" : 28,
     "modules-left": [
         "hyprland/workspaces",
         "tray",
