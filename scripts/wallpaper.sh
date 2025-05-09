@@ -12,7 +12,8 @@ CONFIG="$HOME/wallpapers/hyprpaper.conf"
 MONITORS=$(/usr/bin/hyprctl monitors | grep "Monitor" | awk '{print $2}')
 
 for MONITOR in $MONITORS; do
-    FILE=$(find "$WALLPAPER_DIR" -type f \
+    FILE=$(find -L "$WALLPAPER_DIR" \
+        -type f  \
         -not -path "$WALLPAPER_DIR/.git/*" \
         -not -name "*.sh" \
         -not -name "*.conf" | shuf -n 1)
