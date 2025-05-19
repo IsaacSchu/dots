@@ -4,6 +4,8 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>f", vim.cmd.Ex)
 vim.api.nvim_set_keymap("i", "jj", "<Esc>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "kk", "<Esc>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "kj", "<Esc>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "jk", "<Esc>", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", "<leader>r", [[:w<CR>: !python %<CR>]], { noremap = true, silent = true })
