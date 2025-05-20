@@ -82,3 +82,11 @@ require("lazy").setup({
     },
   },
 })
+vim.api.nvim_set_hl(0, "Comment", { fg = "#CCAAFF", italic = true })
+vim.api.nvim_set_hl(0, "CursorLine", { bg = "#251535" })
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    vim.o.titlestring = vim.fn.expand("%:~")
+    vim.o.title = true
+  end,
+})
