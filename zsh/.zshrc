@@ -121,3 +121,5 @@ if [ -f /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh ]; then
     ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=#bf285d
     ZSH_HIGHLIGHT_STYLES[path]=fg=None
 fi
+
+. "$HOME/.local/share/../bin/env"
