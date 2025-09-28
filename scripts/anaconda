@@ -1,0 +1,1 @@
+eval "$(/home/lain/anaconda3/bin/conda shell.YOUR_SHELL_NAME hook)"

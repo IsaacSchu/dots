@@ -1,0 +1,1 @@
+mpvpaper -p -o "--profile=gpu-hq --hwdec=auto --no-audio --loop-file cache=yes --cache-secs=30 gpu-api=vulkan --demuxer-max-back-bytes=100M --demuxer-max-bytes=100M --no-osd-bar --config=no" DP-3 monogatari\ pls.mp4

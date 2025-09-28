@@ -12,15 +12,12 @@ if [ "$HYPRGAMEMODE" = 1 ]; then
         keyword decoration:rounding 0;\
         dispatch exec killall mpvpaper;\
         dispatch exec killall hyprpaper;\
-        keyword unbind ALT, q;\
         keyword unbind , mouse:275;\
-        keyword unbind , mouse:276;\
-        keyword bind ALT SHIFT, Q, killactive"
+        keyword unbind , mouse:276;"
     exit
 else
     if ! pgrep -x mpvpaper >/dev/null && ! pgrep -x hyprpaper >/dev/null; then
         bash /home/lain/bin/wallpapers/wallpaper.sh
-        #        bash /home/lain/bin/Kando-1.8.0-x86_64.AppImage
     fi
     #   if ! ip link show mullvad >/dev/null; then
 fi

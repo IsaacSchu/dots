@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 echo "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣴⣶⣿⠿⠛⠛⠛⠻⠿⣿⣿⣿⣿⣿⣶⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -57,32 +57,52 @@ sad_lain_bottom="⠀⠀⠀⠀⢀⡇⢀⠎⠘⠀⠑⠏⠋⠙⢤⡀⠀⠀⠠⠦⠀
 ⢸⠀⠀⠀⠀⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢳⠀
 ⠈⡆⠀⠀⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣴⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡇"
 echo "<><><> Syncing Portage Tree <><><>"
-sudo emerge --sync --quiet || { echo "$sad_lain_top        Sync Failed :(
-$sad_lain_bottom";exit 1; }
+sudo emerge --sync --quiet || {
+    echo "$sad_lain_top        Sync Failed :(
+$sad_lain_bottom"
+    exit 1
+}
 
 echo "<><><> Emerging Small Packages <><><>"
-MAKEOPTS='-j4' sudo emerge --update --newuse --deep --jobs=4 --load-average=16 --verbose --keep-going --quiet --with-bdeps=y --autounmask-continue --exclude='www-client/firefox www-client/librewolf app-office/libreoffice media-libs/mesa dev-java/openjdk dev-qt/qtwebengine dev-build/cmake media-video/ffmpeg dev-lang/zig sys-devel/gcc llvm-core/llvm dev-lang/rust net-libs/webkit-gtk dev-qt/qtcore media-gfx/blender media-video/vlc media-gfx/gimp app-emulation/qemu dev-build/ninja mail-client/thunderbird app-emulation/wine-proton llvm-core/clang dev-libs/boost dev-qt/qtbase dev-lang/go dev-lang/python sys-libs/glibc net-libs/nodejs' @world || { echo "$sad_lain_top        Small Emerge Failed :(
-$sad_lain_bottom";exit 1; }
+MAKEOPTS='-j4' sudo emerge --update --newuse --deep --jobs=4 --load-average=16 --verbose --keep-going --quiet --with-bdeps=y --autounmask-continue --exclude='lxc www-client/firefox www-client/librewolf app-office/libreoffice media-libs/mesa dev-java/openjdk dev-qt/qtwebengine dev-build/cmake media-video/ffmpeg dev-lang/zig sys-devel/gcc llvm-core/llvm dev-lang/rust net-libs/webkit-gtk dev-qt/qtcore media-gfx/blender media-video/vlc media-gfx/gimp app-emulation/qemu dev-build/ninja mail-client/thunderbird app-emulation/wine-proton llvm-core/clang dev-libs/boost dev-qt/qtbase dev-lang/go dev-lang/python sys-libs/glibc net-libs/nodejs' @world || {
+    echo "$sad_lain_top        Small Emerge Failed :(
+$sad_lain_bottom"
+}
 
 echo "<><><> Emerging All Packages <><><>"
-MAKEOPTS='-j16' sudo emerge --update --newuse --deep --verbose --keep-going --quiet --with-bdeps=y --autounmask-continue --exclude="blender" @world || { echo "$sad_lain_top        Full Emerge Failed :(
-$sad_lain_bottom";exit 1; }
+MAKEOPTS='-j14' sudo emerge --update --newuse --deep --verbose --keep-going --quiet --with-bdeps=y --autounmask-continue --exclude="" @world || {
+    echo "$sad_lain_top        Full Emerge Failed :(
+$sad_lain_bottom"
+    exit 1
+}
 
 echo "<><><> Rebuilding Preserved Packages <><><>"
-MAKEOPTS='-j16' sudo emerge --verbose --keep-going --quiet-build --exclude='blender' @preserved-rebuild || { echo "$sad_lain_top        Preserved Rebuild Failed :(
-$sad_lain_bottom";exit 1; }
+MAKEOPTS='-j14' sudo emerge --verbose --keep-going --quiet-build --exclude='blender' @preserved-rebuild || {
+    echo "$sad_lain_top        Preserved Rebuild Failed :(
+$sad_lain_bottom"
+    exit 1
+}
 
 echo "<><><> Depclean <><><>"
-sudo emerge --depclean --quiet || { echo "$sad_lain_top        Depclean Failed :(
-$sad_lain_bottom"; true; }
+sudo emerge --depclean --quiet || {
+    echo "$sad_lain_top        Depclean Failed :(
+$sad_lain_bottom"
+    true
+}
 
-echo "<><><> Revdep Rebuild <><><>"
-sudo revdep-rebuild --ignore --quiet || { echo "$sad_lain_top        Revdep rebuild Failed :(
-$sad_lain_bottom";exit 1; }
+#echo "<><><> Revdep Rebuild <><><>"
+#sudo revdep-rebuild --ignore --quiet || {
+#    echo "$sad_lain_top        Revdep rebuild Failed :(
+#$sad_lain_bottom"
+#    exit 1
+#}
 
 echo "<><><> Env Update <><><>"
-sudo env-update && source /etc/profile || { echo "$sad_lain_top        Env update Failed lolxd :(
-$sad_lain_bottom";exit 1; }
+sudo env-update && source /etc/profile || {
+    echo "$sad_lain_top        Env update Failed lolxd :(
+$sad_lain_bottom"
+    exit 1
+}
 
 echo "⠀⠀⠀⠀⠀⠀⠀⠄⣀⠢⢀⣤⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⡔⢀⠂⡜⢭⢻⣍⢯⡻⣝⣿⣿⡿⣟⠂
 ⠀⠀⠀⠀⠀⠀⠀⠄⠀⣦⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡔⡀⢂⠜⣪⢗⡾⣶⡽⣾⣟⣯⠛⠀⠀

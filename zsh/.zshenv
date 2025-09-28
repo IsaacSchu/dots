@@ -1,5 +1,6 @@
 # uv
 export PATH="/home/lain/.local/bin:$PATH"
+export TERMINAL="alacritty"
 export ZDOTDIR="$HOME/.config/zsh"
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
@@ -12,8 +13,4 @@ export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel 
 export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java 
-
-if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
-    eval $(dbus-launch --sh-syntax)
-    export DBUS_SESSION_BUS_ADDRESS
-fi
+export BROWSER=librewolf
