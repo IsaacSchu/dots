@@ -1,5 +1,5 @@
 [font]
-size = 16
+size = 18
 [colors.bright]
 black = "#777777"
 blue = "#6f8fdb"
@@ -26,7 +26,7 @@ yellow = "#e9bf57"
 
 [colors.primary]
 background = "#000000"
-foreground = "#CCAAFF"
+foreground = "#C1B9D8"
 
 [colors.selection]
 background = "#874ed9"
