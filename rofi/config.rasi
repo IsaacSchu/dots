@@ -1,0 +1,18 @@
+configuration {
+    modes:              "combi";
+    combi-modes:        "drun,window";
+    show-icons:         true;
+    display-drun:       "drun";
+    display-run:        "run";
+    display-window:     "win";
+    drun-display-format: "{name}";
+    window-format:      "{w} {t}";
+    combi-hide-mode-prefix: true;
+    hover-select:       true;
+    scroll-method:      1;
+    matching:           "fuzzy";
+    sort:               true;
+    sorting-method:     "fzf";
+}
+
+@theme "wired"

@@ -1,0 +1,137 @@
+/*
+ * wired.rasi — dark cyberpunk theme
+ * "No matter where you go, everyone's connected."
+ */
+
+* {
+    bg:           #0a0e14CC;
+    bg-alt:       #11182099;
+    bg-sel:       #1a1f2b99;
+    fg:           #b3b1ad;
+    fg-dim:       #4d5566;
+    accent:       #B08AE6;
+    urgent:       #ff3333;
+    border-col:   #B08AE680;
+    glow:         #B08AE633;
+
+    background-color: transparent;
+    text-color:       @fg;
+    font:             "Noto Sans Mono Medium 17";
+}
+
+window {
+    width:            800px;
+    padding:          0;
+    border:           2px;
+    border-color:     @border-col;
+    border-radius:    12px;
+    background-color: @bg;
+    location:         center;
+    anchor:           center;
+}
+
+mainbox {
+    children: [ inputbar, message, listview ];
+    spacing:  0;
+    padding:  0;
+}
+
+inputbar {
+    children:         [ entry ];
+    padding:          20px 28px;
+    spacing:          0;
+    background-color: @bg-alt;
+    border:           0 0 1px 0;
+    border-color:     @border-col;
+}
+
+prompt {
+    text-color: @accent;
+    font:       "Noto Sans Mono Bold 17";
+}
+
+textbox-sep {
+    expand: false;
+    str:    "  ";
+    text-color: @fg-dim;
+}
+
+entry {
+    placeholder:       "";
+    text-color:        @fg;
+    cursor-color:      @accent;
+}
+
+listview {
+    lines:        8;
+    columns:      1;
+    fixed-height: true;
+    padding:      12px 0;
+    scrollbar:    false;
+    border:       0;
+}
+
+element {
+    padding:       16px 28px;
+    spacing:       14px;
+    border-radius: 0;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+element normal.urgent {
+    text-color: @urgent;
+}
+
+element normal.active {
+    text-color: @accent;
+}
+
+element selected.normal {
+    background-color: @bg-sel;
+    text-color:       @accent;
+    border:           0 0 0 3px;
+    border-color:     @accent;
+}
+
+element selected.urgent {
+    background-color: @bg-sel;
+    text-color:       @urgent;
+    border:           0 0 0 3px;
+    border-color:     @urgent;
+}
+
+element selected.active {
+    background-color: @bg-sel;
+    text-color:       @accent;
+    border:           0 0 0 3px;
+    border-color:     @accent;
+}
+
+element-icon {
+    size: 28px;
+}
+
+element-text {
+    vertical-align:   0.5;
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+element-icon {
+    background-color: inherit;
+}
+
+message {
+    padding:          10px 20px;
+    background-color: @bg-alt;
+    border:           0 0 1px 0;
+    border-color:     @border-col;
+}
+
+textbox {
+    text-color: @fg-dim;
+}
