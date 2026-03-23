@@ -37,13 +37,8 @@ blinking = "On"
 shape = "Beam"
 
 [window]
-opacity = 0.9
+opacity = 0.80
 dynamic_title = true
 
 [terminal.shell]
 program = "/bin/zsh"
-
-[[keyboard.bindings]]
-key = "Return"
-mods = "Shift"
-chars = "\u001B\r"
